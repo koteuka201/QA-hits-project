@@ -23,12 +23,15 @@ class Solution:
 
         if len(prerequisites):
             if len(prerequisites[0]) != 2:
-                raise ValueError('элемент массива условия должен иметь 2 курса')
+                raise ValueError('Элемент массива условия должен иметь 2 курса')
         if len(prerequisites)>5000:
             raise ValueError(' len(prerequisites) <= 5000')
 
         if numCourses < 1 or numCourses > 2000:
             raise ValueError('1<=numCourses <2000')
+
+        if not prerequisites:
+            return True
 
         preMap = {i: [] for i in range(numCourses)}
 

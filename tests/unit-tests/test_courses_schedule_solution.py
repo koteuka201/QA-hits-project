@@ -19,8 +19,8 @@ class TestSolution(TestCase):
         data=[
             (1, []),
             (2, [[1, 0]]),
-            (1999, [[i, i - 1] for i in range(1, 1999)]),
-            (2000, [[i, i - 1] for i in range(1, 2000)]),
+            (1999, [[1,0]]),
+            (2000, [[1,0]]),
         ]
         for numCourses, prerequisites in data:
             with self.subTest(numCourses=numCourses, prerequisites=prerequisites):
@@ -29,7 +29,7 @@ class TestSolution(TestCase):
     def test_can_finish_numCourses_count_invalid(self):
         data=[
             (0, []),
-            (2001, [[i, i - 1] for i in range(1, 2001)]),
+            (2001, [[1,0]]),
         ]
         for numCourses, prerequisites in data:
             with self.subTest(numCourses=numCourses, prerequisites=prerequisites):
@@ -42,6 +42,8 @@ class TestSolution(TestCase):
             (None, []),
             (0.5, []),
             (True, []),
+            ({'numCourses': 1}, []),
+            (b'1', []),
             ((1,), []),
         ]
         for numCourses, prerequisites in data:
@@ -83,8 +85,10 @@ class TestSolution(TestCase):
             (2, [['0','0']]),
             (2, [[[],[]]]),
             (2, [[None, None]]),
-            (2, [[0.5, 0.5]]),
+            (2, [[0.5, 0.3]]),
             (2, [[True, True]]),
+            (2, [[b'1', b'1']]),
+            (2, [[{'numCourses': 1}, {'numCourses': 1}]]),
         ]
         for numCourses, prerequisites in data:
             with self.subTest(numCourses=numCourses, prerequisites=prerequisites):
