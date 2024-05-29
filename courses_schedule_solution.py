@@ -21,11 +21,12 @@ class Solution:
             else:
                 seen_pairs.add(tuple(course))
 
+        if len(prerequisites)>5000:
+            raise ValueError(' len(prerequisites) <= 5000')
+
         if len(prerequisites):
             if len(prerequisites[0]) != 2:
                 raise ValueError('Элемент массива условия должен иметь 2 курса')
-        if len(prerequisites)>5000:
-            raise ValueError(' len(prerequisites) <= 5000')
 
         if numCourses < 1 or numCourses > 2000:
             raise ValueError('1<=numCourses <2000')
