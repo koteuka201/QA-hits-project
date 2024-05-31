@@ -3,21 +3,34 @@ from page_object.locators import MainPageLocators
 
 class TestAppUI:
     def test_app_title_matches(self,browser):
+        """
+            Тест проверяет, что заголовок главной страницы будет 'This is demo app'
+        """
         main_page=page.MainPage(browser)
 
         assert main_page.is_title_matches()
 
     def test_app_main_page_has_numCourses_input(self,browser):
+        """
+            Тест проверяет, что на главной странице есть поле ввода числа курсов
+        """
         main_page=page.MainPage(browser)
 
         assert main_page.driver.find_element(*MainPageLocators.NUM_INPUT)
 
     def test_app_main_page_has_prerequisites_input(self,browser):
+        """
+            Тест проверяет, что на главной странице есть поле ввода числа требований
+        """
         main_page=page.MainPage(browser)
 
         assert main_page.driver.find_element(*MainPageLocators.PREREQUISISTES_INPUT)
 
     def test_app_main_page_has_submit_button(self,browser):
+        """
+            Тест проверяет, что на главной странице есть кнопка отправки данных
+        """
+
         main_page=page.MainPage(browser)
 
         assert main_page.driver.find_element(*MainPageLocators.SEND_BUTTON)
@@ -39,6 +52,10 @@ class TestAppUI:
         assert result_page.is_result_found()
 
     def test_app_error_if_prerequisites_i_equal(self,browser):
+        """
+            Тест проверяет, что выведется страница ошибки Bad Request, если в массиве условий будут одинаковые пары
+        """
+
         main_page=page.MainPage(browser)
         main_page.fill_data({
             'numCourses': 2,
