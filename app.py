@@ -18,7 +18,7 @@ def get_form():
             <form action="/" method="POST">
                 Количество курсов: <input type="number" name="numCourses"><br>
                 Требования (простое разделение, e.g. 1,0;2,1(; ставится если есть еще зависимости): <input type="text" name="prerequisites"><br>
-                <input id="go" type="submit" value="Submit">
+                <input id="go" type="submit" value="Отправить">
             </form>
             </body>
             </html>

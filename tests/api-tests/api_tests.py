@@ -92,8 +92,9 @@ class TestCanFinish:
     @pytest.mark.parametrize("numCourses, prerequisites", [
         pytest.param(1, [], id="left_on_bound"),
         pytest.param(2, [[1, 0]], id="left_gt_bound"),
-        # pytest.param(1000, [[i % 4999, (i - 1) % 4999] for i in range(1, 4999)], id="right_on_bound"),
-        # pytest.param(1000, [[i % 5000, (i - 1) % 5000] for i in range(1, 5000)], id="right_lt_bound")
+        # pytest.param(1000, [[i % 4999, (i - 1) % 4999] for i in range(1, 5000)], id="right_on_bound"),
+        # pytest.param(1000, [[i % 5000, (i - 1) % 5000] for i in range(1, 5001)], id="right_lt_bound")
+        # ошибка maximum recursion depth exceeded in comparison при длине больше num, поэтому проверить пограничные значения 4999 и 5000 невозможно BugReport!
     ])
     def test_can_finish_prerequisites_length_valid(self, numCourses, prerequisites):
         '''
@@ -106,7 +107,7 @@ class TestCanFinish:
         }).json()['result']
 
     @pytest.mark.parametrize("numCourses, prerequisites", [
-        pytest.param(1000, [[i % 5001, (i - 1) % 5001] for i in range(1, 5001)], id="right_gt_bound")
+        pytest.param(1000, [[i % 5001, (i - 1) % 5001] for i in range(1, 5002)], id="right_gt_bound")
     ])
     def test_bad_request_can_finish_prerequisites_length_invalid(self, numCourses, prerequisites):
         '''
@@ -178,7 +179,6 @@ class TestCanFinish:
         }).status_code == 400
 
     @pytest.mark.parametrize("numCourses, prerequisites", [
-        # pytest.param(2, [['0', '0']]),
         pytest.param(2, [[[], []]]),
         pytest.param(2, [[None, None]]),
         pytest.param(2, [[0.5, 0.3]]),

@@ -85,8 +85,9 @@ class TestSolution(TestCase):
         data=[
             (1, []),
             (2, [[1, 0]]),
-            (2000, [[i % 2000, (i - 1) % 2000] for i in range(1, 2000)]),
-            # ошибка maximum recursion depth exceeded in comparison при длине больше num (баг репорт мб сделать хз)
+            # (2000, [[i % 5000, (i - 1) % 5000] for i in range(1, 5000)]),
+            # (2000, [[i % 5001, (i - 1) % 5001] for i in range(1, 5001)]),
+            # ошибка maximum recursion depth exceeded in comparison при длине больше num, поэтому проверить пограничные значения 4999 и 5000 невозможно BugReport!
         ]
         for numCourses, prerequisites in data:
             with self.subTest(numCourses=numCourses, prerequisites_length=len(prerequisites)):

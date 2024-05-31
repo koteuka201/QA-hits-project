@@ -1,0 +1,29 @@
+Заголовок: Превышение максимальной глубины рекурсии при длине требований входных данных в функции canFinish
+Описание: При выполнении функции canFinish с большим количеством курсов и зависимостей, происходит ошибка "maximum recursion depth exceeded in comparison".
+Серьезность: Блокирующая
+Приоритет: Высокий
+Шаги по воспроизведению:
+    1) вызвать canFinish c данными numCourses: i, len(prerequisites): i+1
+Ожидаемый результат: если данные валидны, функция должна вернуть результат
+Фактический результат: выбрасывает ошибку "maximum recursion depth exceeded in comparison".
+Возможное решение: я пытался пофиксить, но я проиграл :(
+Статус решения: не решен
+Момент ошибки:
+        def dfs(crs):
+            if crs in visiting:
+                return False
+            if preMap[crs] == []:
+                return True
+
+            visiting.add(crs)
+            for pre in preMap[crs]:
+                if not dfs(pre):
+                    return False
+            visiting.remove(crs)
+            preMap[crs] = []
+            return True
+
+        for c in range(numCourses):
+            if not dfs(c):
+                return False
+        return True
